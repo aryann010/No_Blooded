@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool forCheckingInsideNormal = false;
     public delegate void updateScore();
     public event updateScore updateScoreEvent;
-    [SerializeField] TMP_Text text;
+
 
 
     private void Awake()
@@ -48,9 +48,7 @@ public class PlayerController : MonoBehaviour
    public void settingUpScoreWhilePowerUp()
     {
         isScoreMultiplierOn = true;
-        text.gameObject.SetActive(true);
         StartCoroutine(timerForMultiplier());
-        text.gameObject.SetActive(false);
     }
     IEnumerator timerForMultiplier()
     {

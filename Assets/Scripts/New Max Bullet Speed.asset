@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3343cfae1de6d40b554d53d3125d12, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f3ded4b0aaf0e747888fd20717ebf22, type: 3}
   m_Name: New Max Bullet Speed
   m_EditorClassIdentifier: 
-  bulletDelayDecrease: 0.21
+  bulletDelayDecrease: 0.2

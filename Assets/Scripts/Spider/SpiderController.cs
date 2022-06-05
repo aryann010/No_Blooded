@@ -25,7 +25,7 @@ public class SpiderController : MonoBehaviour
     void Awake()
     {
         navmeshagent = GetComponent<NavMeshAgent>();
-         player = FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<PlayerController>();
         animator = GetComponent<Animator>();
         currentHealth = health;
         navmeshagent.enabled = true;
@@ -36,7 +36,8 @@ public class SpiderController : MonoBehaviour
     {
         
         if (currentHealth <= 0) { return; }
-       if(navmeshagent.enabled) navmeshagent.SetDestination(player.transform.position);
+       
+        if(navmeshagent.enabled) navmeshagent.SetDestination(player.transform.position);
        if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
             attackEvent();

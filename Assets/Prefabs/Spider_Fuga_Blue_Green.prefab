@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 467367517588452253}
   - component: {fileID: 467367517588452240}
   - component: {fileID: 7978624207293937420}
-  - component: {fileID: 889501504194297107}
+  - component: {fileID: -7955174683506325000}
   m_Layer: 0
   m_Name: Spider_Fuga_Blue_Green
   m_TagString: spider
@@ -65,12 +65,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7549625301998050449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67203c2cd43bb3d49becda3a2daa572b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c7a0e88edb1d8c4eabb707124a433e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 1
   health: 100
-  player: {fileID: 0}
   currentHealth: 0
   navmeshagent: {fileID: 0}
   animator: {fileID: 0}
@@ -109,7 +108,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.74, y: 10.76, z: 1.33}
   m_Center: {x: 0.03, y: 5.53, z: -0.03}
---- !u!114 &889501504194297107
+--- !u!114 &-7955174683506325000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7549625301998050449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9230017686952b143a285a7a61517554, type: 3}
+  m_Script: {fileID: 11500000, guid: f278b213e13c85e4d9b3f76362607f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spidercontroller: {fileID: 467367517588452253}

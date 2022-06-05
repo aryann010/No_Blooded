@@ -37,7 +37,7 @@ public class PlayerEvents : MonoBehaviour
       
         if (playerController.isScoreMultiplierOn == false)
         {
-         
+           
             if (playerController.forCheckingInsideNormal == true)
             {
                 count = PlayerPrefs.GetInt("ScoreAfterMultiplier", x);
@@ -51,7 +51,7 @@ public class PlayerEvents : MonoBehaviour
             playerController.forCheckingInsideNormal = false;
             text.text = "Score : " + count;
             highScoreText.text = "High Score : " + scoreCount;
-            PlayerPrefs.SetInt("HighScore", count);
+            PlayerPrefs.SetInt("HighScore", scoreCount);
             PlayerPrefs.SetInt("currentScore", count);
             count++;
         }
@@ -70,7 +70,7 @@ public class PlayerEvents : MonoBehaviour
             playerController.forCheckingInsideMultiplier = false;
             text.text = "Score : " + x;
             highScoreText.text = "High Score : " + scoreCount;
-            PlayerPrefs.SetInt("HighScore", x);
+            PlayerPrefs.SetInt("HighScore",scoreCount);
             PlayerPrefs.SetInt("ScoreAfterMultiplier", x);
             x+=5;
         }
