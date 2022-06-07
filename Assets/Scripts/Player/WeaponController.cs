@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    float nextFireTime;
-  [SerializeField]public float delay=0.25f;
+    [SerializeField]public float delay=0.25f;
     [SerializeField] BulletController bulletController;
-    private Queue<BulletController> bullets = new Queue<BulletController>();
-    public static WeaponController Instance;
     [SerializeField] LayerMask layerMask;
     [SerializeField] Transform firePoint;
-  
-
-
-
+    private Queue<BulletController> bullets = new Queue<BulletController>();
+    public static WeaponController Instance;
+    float nextFireTime;
     private void Awake()
     {
         if (Instance == null)
@@ -27,24 +23,20 @@ public class WeaponController : MonoBehaviour
         aimDirection(); 
             if (bullets.Count == 0)
             {
-                if (ReadyToFire())
-                    Fire();
+                if (ReadyToFire()) Fire();
             }
             else
             {
                 if (ReadyToFire())
                 {
-
                     BulletController enqBullet = bullets.Dequeue();
                     nextFireTime = Time.time + delay;
                     enqBullet.gameObject.transform.position = firePoint.position;
                     enqBullet.gameObject.transform.rotation = Quaternion.Euler(transform.forward);
                     enqBullet.gameObject.SetActive(true);
-
                     enqBullet.launch(transform.forward);
                 }
             }
-       
     }
     void aimDirection()
     {
@@ -60,24 +52,18 @@ public class WeaponController : MonoBehaviour
     }
     bool ReadyToFire()
     {
-        if (Time.time >= nextFireTime && Input.GetKey(KeyCode.Space))
-        {
-            return true;
-        }
-        return false;
+        if (Time.time >= nextFireTime && Input.GetKey(KeyCode.Space)) return true;
+        else return false;
     }
     void Fire()
     {
-
         nextFireTime = Time.time + delay;
         var shot = Instantiate(bulletController, firePoint.position, Quaternion.Euler(transform.forward));
         shot.launch(transform.forward);
         bullets.Enqueue(shot);
     }
-    public void resetDelayTimer()
-    {
-        StartCoroutine(reset());
-    }
+    public void resetDelayTimer()=>StartCoroutine(reset());
+ 
     IEnumerator reset()
     {
         yield return new WaitForSeconds(7);
@@ -87,7 +73,6 @@ public class WeaponController : MonoBehaviour
     public void returnToPool(BulletController bulletPrefab)
     {
         bulletPrefab.gameObject.SetActive(false);
-
         bullets.Enqueue(bulletPrefab);
     }
 }

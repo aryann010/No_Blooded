@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 8296172668626882300}
   - component: {fileID: 8296172668626882299}
   - component: {fileID: 1538235422162927360}
+  - component: {fileID: 8247234896755893700}
   m_Layer: 7
   m_Name: Robot
   m_TagString: Untagged
@@ -354,6 +355,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   highScoreText: {fileID: 0}
+--- !u!143 &8247234896755893700
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961430134957874302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1097351909965883524
 GameObject:
   m_ObjectHideFlags: 0

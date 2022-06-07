@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class SpiderEvents : MonoBehaviour
 {
     [SerializeField] private SpiderController spidercontroller;
-   
+    private bool isPlayerinRange = false;
 
     private void Awake()
     {
@@ -14,14 +14,19 @@ public class SpiderEvents : MonoBehaviour
         spidercontroller.takeHitEvent += takeHit;
         spidercontroller.attackEvent += attack;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent < PlayerController>())isPlayerinRange = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerController>())isPlayerinRange = false;
+    }
     void die()
     {
         GetComponent<Collider>().enabled = false;
        spidercontroller.navmeshagent.enabled = false;
        spidercontroller.animator.SetTrigger("dead");
-      
-        Destroy(gameObject, 5f);
- 
     }
     void takeHit()
     {
@@ -48,11 +53,10 @@ public class SpiderEvents : MonoBehaviour
     {
         if (spidercontroller.currentHealth > 0)
           spidercontroller. navmeshagent.enabled = true;
+        if(isPlayerinRange)
+        spidercontroller.attackedPlayer();
     }
-    void AttackHit()         //anim callback
-    {
-
-    }
+    void AttackHit() { }
     private void OnDestroy()
     {
         spidercontroller.dieEvent -= die;

@@ -7,23 +7,29 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float Speed = 0.5f;
     [SerializeField] float health = 100;
+    public bool isScoreMultiplierOn = false;
+    public bool isNormalShotFired = false;
+    public bool forCheckingInsideMultiplier = false;
+    public bool forCheckingInsideNormal = false;
+    public GameObject[] PowerrUpPrefabs;
     public float currentHealth;
     private Animator animator;
-    public delegate void DieEvent();
-    public event DieEvent dieEvent;
-    public bool isScoreMultiplierOn = false;
-    public bool forCheckingInsideMultiplier = true;
-    public bool forCheckingInsideNormal = false;
     public delegate void updateScore();
     public event updateScore updateScoreEvent;
-
-
+    public delegate void spawningPowers();
+    public event spawningPowers SpawningPowers;
+    public delegate void updateHealthUI();
+    public event updateHealthUI updateHealthEvent;
+    public delegate void HealthTextUpdateAfterPowerUp();
+    public event HealthTextUpdateAfterPowerUp updateUI;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         currentHealth = health;
     }
+    private void Start()=>SpawningPowers();
+   
     private void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -36,28 +42,36 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<SpiderController>())
-        {
-            currentHealth -= 9;
-            if (currentHealth <= 0)
-            {
-                dieEvent();
-            }
-        }
+        if (collision.gameObject.GetComponent<SpiderController>())currentHealth -= 9;
     }
-   public void settingUpScoreWhilePowerUp()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PowerupController>()) StartCoroutine(forr());
+    }
+    IEnumerator forr()
+    {
+        yield return new WaitForSeconds(9);
+        SpawningPowers();
+    }
+    public void settingUpScoreWhilePowerUp()
     {
         isScoreMultiplierOn = true;
         StartCoroutine(timerForMultiplier());
+        forCheckingInsideMultiplier = true;
     }
     IEnumerator timerForMultiplier()
     {
         yield return new WaitForSeconds(15);
         isScoreMultiplierOn = false;
+        forCheckingInsideMultiplier = false;
         forCheckingInsideNormal = true;
     }
-    public void forScoreMultiplier()
+    public void forScoreMultiplier()=>updateScoreEvent();
+
+    public void updateScoreMethod()
     {
-        updateScoreEvent();
+       updateHealthEvent();
+
     }
+    public void updateHealthAfterPowerup()=>updateUI(); 
 }

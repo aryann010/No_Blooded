@@ -10,7 +10,15 @@ public class MaxHealth : PowerEffects
     {
         if (target.GetComponent<PlayerController>())
         {
-            target.GetComponent<PlayerController>().currentHealth = 100;
+            target.GetComponent<PlayerController>().currentHealth += 25;
+            target.GetComponent<PlayerController>().updateHealthAfterPowerup();
+
+            if (target.GetComponent<PlayerController>().currentHealth > 100)
+            {
+                target.GetComponent<PlayerController>().currentHealth = 100;
+                target.GetComponent<PlayerController>().updateHealthAfterPowerup();
+            }
+          
         }
     }
 }

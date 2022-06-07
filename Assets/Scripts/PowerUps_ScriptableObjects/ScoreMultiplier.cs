@@ -7,10 +7,7 @@ public class ScoreMultiplier : PowerEffects
 {
     public override void Apply(GameObject target)
     {
-        if (target.GetComponent<PlayerController>())
-        {
-            target.GetComponent<PlayerController>().settingUpScoreWhilePowerUp();
+        if (target.GetComponent<PlayerController>())target.GetComponent<PlayerController>().settingUpScoreWhilePowerUp();
 
-        }
     }
 }
